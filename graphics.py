@@ -3,7 +3,7 @@ from tkinter import Tk, BOTH, Canvas
 class Window():
     def __init__(self, width, height):
         self.__root = Tk()
-        self.__root.title("Hello Maze")
+        self.__root.title("Maze Runner")
         self.canvas = Canvas(self.__root, bg="white", height=height, width=width)
         self.canvas.pack(fill=BOTH, expand=1)
         self.running = False
