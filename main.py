@@ -1,12 +1,14 @@
 from tkinter import Tk, BOTH, Canvas
-from window import *
+from graphics import *
+from cell import *
+from maze import *
 
-win = Window(800, 600)
+def main():
+    win = Window(800, 600)
 
-line1 = Line(Point(10,10), Point(200,200))
-line2 = Line(Point(10,200), Point(200, 10))
+    maze = Maze(50, 50, 10, 10, 50, 50, win)
+    maze._create_cells()
 
-win.draw_line(line1, "red")
-win.draw_line(line2, "black")
+    win.wait_for_close()
 
-win.wait_for_close()
+main()
