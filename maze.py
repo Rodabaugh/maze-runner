@@ -107,17 +107,17 @@ class Maze():
         if col == self.num_cols - 1 and row == self.num_rows - 1:
             return True
 
-        # Left
+        # Down
         if (
-            col > 0
-            and not self._cells[col][row].has_left_wall
-            and not self._cells[col - 1][row].visited
+            row < self.num_rows - 1
+            and not self._cells[col][row].has_bottom_wall
+            and not self._cells[col][row + 1].visited
         ):
-            self._cells[col][row].draw_move(self._cells[col - 1][row])
-            if self._solve_r(col - 1, row):
+            self._cells[col][row].draw_move(self._cells[col][row + 1])
+            if self._solve_r(col, row + 1):
                 return True
             else:
-                self._cells[col][row].draw_move((self._cells[col - 1][row]), True)
+                self._cells[col][row].draw_move(self._cells[col][row + 1], True)
         
         # Right
         if (
@@ -131,6 +131,18 @@ class Maze():
             else:
                 self._cells[col][row].draw_move(self._cells[col + 1][row], True)
 
+        # Left
+        if (
+            col > 0
+            and not self._cells[col][row].has_left_wall
+            and not self._cells[col - 1][row].visited
+        ):
+            self._cells[col][row].draw_move(self._cells[col - 1][row])
+            if self._solve_r(col - 1, row):
+                return True
+            else:
+                self._cells[col][row].draw_move((self._cells[col - 1][row]), True)
+
         # Up
         if (
             row > 0
@@ -142,17 +154,5 @@ class Maze():
                 return True
             else:
                 self._cells[col][row].draw_move(self._cells[col][row - 1], True)
-
-        # Down
-        if (
-            row < self.num_rows - 1
-            and not self._cells[col][row].has_bottom_wall
-            and not self._cells[col][row + 1].visited
-        ):
-            self._cells[col][row].draw_move(self._cells[col][row + 1])
-            if self._solve_r(col, row + 1):
-                return True
-            else:
-                self._cells[col][row].draw_move(self._cells[col][row + 1], True)
         
         return False
