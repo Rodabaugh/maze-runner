@@ -1,13 +1,11 @@
-from tkinter import Tk, BOTH, Canvas
-import sys
-from graphics import *
-from cell import *
-from maze import *
+from sys import setrecursionlimit
+from graphics import Window
+from maze import Maze
 from constraints import *
 
 def main():
     win = Window(screen_x, screen_y)
-    sys.setrecursionlimit(10000)
+    setrecursionlimit(10000)
 
     maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
     if maze.solve():
